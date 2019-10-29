@@ -26,8 +26,9 @@ public class CandyMachine {
         double money = uI.nextDouble();
         System.out.println(money+", that's all? \n"
                                 +"Well, lemme tell ya what we got here.");
+        String choice = machine();
         double cost = 0;
-        cost += machine();
+        cost += costAdd(choice);
         if (cost > 0){
             System.out.println(money);
         }
@@ -35,7 +36,7 @@ public class CandyMachine {
        //     System.out.println("Sorry you have not chosen a correct candy, please try again");
        // }
     }
-    private static double machine(){
+    private static String machine(){
         System.out.println("A       $1.00  Kinder Bueno\n"
                           +"B       $0.25  Wrapped Brazilian \"brigadeiro\"\n"
                           +"C       $0.10  Small Gummy Bear Packer\n"
@@ -46,7 +47,11 @@ public class CandyMachine {
         System.out.print("    So, what can I get you? > ");
         uI.next();
         String choice = uI.nextLine();
-        if(choice.equalsIgnoreCase("A")){
+        return choice;
+    }
+    
+    private static double costAdd(String choice){
+         if(choice.equalsIgnoreCase("A")){
         return 1.00;     
         }
         else if(choice.equalsIgnoreCase("B")){
