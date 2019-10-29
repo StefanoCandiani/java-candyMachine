@@ -26,9 +26,16 @@ public class CandyMachine {
         double money = uI.nextDouble();
         System.out.println(money+", that's all? \n"
                                 +"Well, lemme tell ya what we got here.");
-        machine(money);
+        double cost = 0;
+        cost += machine();
+        if (cost > 0){
+            System.out.println(money);
+        }
+        //else if (cost <= 0){
+       //     System.out.println("Sorry you have not chosen a correct candy, please try again");
+       // }
     }
-    private static void machine(double dollars){
+    private static double machine(){
         System.out.println("A       $1.00  Kinder Bueno\n"
                           +"B       $0.25  Wrapped Brazilian \"brigadeiro\"\n"
                           +"C       $0.10  Small Gummy Bear Packer\n"
@@ -38,25 +45,30 @@ public class CandyMachine {
                           +"G       $1.50  Brownie");
         System.out.print("    So, what can I get you? > ");
         uI.next();
-        char choice = (uI.nextLine()).charAt(0);
-        
-        if(choice == 'A'){
-            System.out.println(choice);
-            if(dollars >= 1.0){
-                System.out.println("Thank you for purchasing candy with us.");
-                double change = dollars - 1.0;
-                System.out.println("Please take your candy, and your change is $"+change+"\n"
-                                  +"Have a nice day :D");
-            }
-            else{
-                System.out.println("Sorry, you don't have enough money.\n"
-                                  +"Have a nice day :D");
-            }
+        String choice = uI.nextLine();
+        if(choice.equalsIgnoreCase("A")){
+        return 1.00;     
         }
-        else if(choice == 'B'){
-            if(dollars >= 0.25){
-                
-            }
+        else if(choice.equalsIgnoreCase("B")){
+            return 0.25;
+        }
+        else if(choice.equalsIgnoreCase("C")){
+            return 0.10;
+        }
+        else if(choice.equalsIgnoreCase("D")){
+            return 3.00;
+        }
+        else if(choice.equalsIgnoreCase("E")){
+            return 0.20;
+        }
+        else if(choice.equalsIgnoreCase("F")){
+            return 2.00;
+        }
+        else if(choice.equalsIgnoreCase("G")){
+            return 1.50;
+        }
+        else{
+            return -1;
         }
     }
 }
