@@ -24,19 +24,14 @@ public class CandyMachine {
         
         System.out.print("How much money do ya got? > $");
         double money = uI.nextDouble();
-        System.out.println(money+", that's all? \n"
+        System.out.println("$"+money+", that's all? \n"
                                 +"Well, lemme tell ya what we got here.");
-        String choice = machine();
+        System.out.println("");
         double cost = 0;
-        cost += costAdd(choice);
-        if (cost > 0){
-            System.out.println(money);
-        }
-        //else if (cost <= 0){
-       //     System.out.println("Sorry you have not chosen a correct candy, please try again");
-       // }
+        cost += machine();
+        dispense(money, cost);
     }
-    private static String machine(){
+    private static double machine(){
         System.out.println("A       $1.00  Kinder Bueno\n"
                           +"B       $0.25  Wrapped Brazilian \"brigadeiro\"\n"
                           +"C       $0.10  Small Gummy Bear Packer\n"
@@ -44,36 +39,45 @@ public class CandyMachine {
                           +"E       $0.20  Coca-Cola Candy\n"
                           +"F       $2.00  Loacker Wafer Hazelnut\n"
                           +"G       $1.50  Brownie");
+        System.out.println("");
         System.out.print("    So, what can I get you? > ");
-        uI.next();
-        String choice = uI.nextLine();
-        return choice;
-    }
-    
-    private static double costAdd(String choice){
-         if(choice.equalsIgnoreCase("A")){
+        char choice = uI.next().toUpperCase().charAt(0);
+        if(choice == 'A'){
         return 1.00;     
         }
-        else if(choice.equalsIgnoreCase("B")){
+        else if(choice == 'B'){
             return 0.25;
         }
-        else if(choice.equalsIgnoreCase("C")){
+        else if(choice == 'C'){
             return 0.10;
         }
-        else if(choice.equalsIgnoreCase("D")){
+        else if(choice == 'D'){
             return 3.00;
         }
-        else if(choice.equalsIgnoreCase("E")){
+        else if(choice == 'E'){
             return 0.20;
         }
-        else if(choice.equalsIgnoreCase("F")){
+        else if(choice == 'F'){
             return 2.00;
         }
-        else if(choice.equalsIgnoreCase("G")){
+        else if(choice == 'G'){
             return 1.50;
         }
         else{
-            return -1;
+            return 0;
+        }
+    }
+    
+    private static void dispense(double moneyInserted, double candyCost){
+        double change = moneyInserted - candyCost;
+        System.out.println("");
+        if(change >= 0){
+            System.out.println("Thank you for shopping with us.\n"
+                              +"Please take your candy, and your $"+change+" change!");
+        }
+        else{
+            System.out.println("Sorry, you can't afford that, please choose something else\n"
+                              +"You have $"+moneyInserted+" and the cost is $"+candyCost);
         }
     }
 }
